@@ -14,9 +14,9 @@ if (session_status() == PHP_SESSION_NONE) {
         <div class="collapse navbar-collapse" id="navbarsExample04">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
 
-                <?php if (isset($_SESSION['accountid'])) : ?>
+                <?php if (isset($_SESSION['accountId'])) : ?>
                     <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
-                    <?php switch ($_SESSION['accountrole']):
+                    <?php switch ($_SESSION['accountRole']):
                         case 'visitor': ?>
                             <li class="nav-item"><a class="nav-link" href="reviews.php">reviews</a></li>
                             <li class="nav-item"><a class="nav-link" href="account.php">account</a></li>
@@ -32,7 +32,7 @@ if (session_status() == PHP_SESSION_NONE) {
             </ul>
 
             <?php
-            if (isset($_SESSION['accountid'])) {
+            if (isset($_SESSION['accountId'])) {
                 // user is logged in
                 echo '<a>welkom ,  ' . $_SESSION['username'] . '</a>';
                 echo '<a href="logout.php" class="btn btn-outline-light ms-4 me-3">log uit</a>';
