@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>movies</title>
+    <title>template</title>
     <!--styles-->
     <link rel="stylesheet" href="/fireArcade/public/assets/css/main.css">
     <!--bootstrap-->
