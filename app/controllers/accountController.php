@@ -49,24 +49,24 @@ class AccountController
     {
         $accountRole = $_POST['accountRole'] ?? '';
         $username = $_POST['username'] ?? '';
-        $accountemail = $_POST['accountemail'] ?? '';
+        $accountEmail = $_POST['accountEmail'] ?? '';
         $accountPassword = $_POST['accountPassword'] ?? '';
 
-        $errors = $this->validateAccountData($accountRole, $username, $accountemail, $accountPassword);
+        $errors = $this->validateAccountData($accountRole, $username, $accountEmail, $accountPassword);
 
         if (!empty($errors)) {
             $errors;
             $formData = [
                 'accountRole' => $accountRole,
                 'username' => $username,
-                'accountemail' => $accountemail,
+                'accountEmail' => $accountEmail,
                 'accountPassword' => $accountPassword,
             ];
             require '../app/views/addAccountView.php';
             exit;
         } else {
             $hashedPassword = password_hash($accountPassword, PASSWORD_DEFAULT);
-            $this->accountModel->addAccount($accountRole, $username, $accountemail, $hashedPassword);
+            $this->accountModel->addAccount($accountRole, $username, $accountEmail, $hashedPassword);
             header("Location: accounts.php");
             exit;
         }
@@ -84,10 +84,10 @@ class AccountController
         $id = $_POST['id'] ?? '';
         $accountRole = $_POST['accountRole'] ?? '';
         $username = $_POST['username'] ?? '';
-        $accountemail = $_POST['accountemail'] ?? '';
+        $accountEmail = $_POST['accountEmail'] ?? '';
         $accountPassword = $_POST['accountPassword'] ?? '';
 
-        $errors = $this->validateAccountData($accountRole, $username, $accountemail, $accountPassword);
+        $errors = $this->validateAccountData($accountRole, $username, $accountEmail, $accountPassword);
 
         if (!empty($errors)) {
             $errors;
@@ -95,7 +95,7 @@ class AccountController
                 'id' => $id,
                 'accountRole' => $accountRole,
                 'username' => $username,
-                'accountemail' => $accountemail,
+                'accountEmail' => $accountEmail,
                 'accountPassword' => $accountPassword,
             ];
             require '../app/views/editAccountView.php';
@@ -115,13 +115,13 @@ class AccountController
             }
 
             // update the account
-            $this->accountModel->editAccount($id, $accountRole, $username, $accountemail, $hashedPassword);
+            $this->accountModel->editAccount($id, $accountRole, $username, $accountEmail, $hashedPassword);
             header("Location: accounts.php");
             exit;
         }
     }
 
-    private function validateAccountData($accountRole, $username, $accountemail, $accountPassword)
+    private function validateAccountData($accountRole, $username, $accountEmail, $accountPassword)
     {
         $errors = [];
 
@@ -133,8 +133,8 @@ class AccountController
             $errors['accountRole'] = 'Er moet een account rol zijn geselecteerd';
         }
 
-        if (empty($accountemail)) {
-            $errors['accountemail'] = 'Email adres is verplicht in te voeren.';
+        if (empty($accountEmail)) {
+            $errors['accountEmail'] = 'Email adres is verplicht in te voeren.';
         }
 
         //also check if email is allready taken or not here

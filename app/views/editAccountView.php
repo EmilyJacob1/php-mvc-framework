@@ -33,7 +33,7 @@ require '../public/components/head.php';
                             <?php
                             $roles = ['admin', 'verkoopmedewerker', 'monteur', 'klant'];
                             foreach ($roles as $role) {
-                                $selected = isset($formData['accountRole']) && $formData['accountRole'] === $role ? 'selected' : ($account['accountRole'] === $role ? 'selected' : '');
+                                $selected = isset($formData['accountRole']) && $formData['accountRole'] === $role ? 'selected' : ($account['accountRole'] === $accountRole ? 'selected' : '');
                                 echo "<option value=\"$role\" $selected>$role</option>";
                             }
                             ?>
