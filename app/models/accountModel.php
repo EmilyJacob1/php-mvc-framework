@@ -62,7 +62,7 @@ class AccountModel
 
     public function addAccount($accountRole, $username, $accountEmail, $hashedPassword)
     {
-        $query = "INSERT INTO accounts (accountrole, username, accountemail, accountpassword) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO accounts (accountRole, username, accountEmail, accountPassword) VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("ssss", $accountRole, $username, $accountEmail, $hashedPassword);
         $success = $stmt->execute();
@@ -72,7 +72,7 @@ class AccountModel
     
     public function editAccount($id, $accountRole, $username, $accountEmail, $hashedPassword)
     {
-        $query = "UPDATE accounts SET accountrole = ?, username = ?, accountEmail = ?, accountPassword = ? WHERE accountid = ?";
+        $query = "UPDATE accounts SET accountRole = ?, username = ?, accountEmail = ?, accountPassword = ? WHERE accountId = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("ssssi", $accountRole, $username, $accountEmail, $hashedPassword, $id);
         $success = $stmt->execute();

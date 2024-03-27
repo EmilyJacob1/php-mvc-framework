@@ -30,8 +30,7 @@ require '../public/components/head.php';
                         <label for="accountRole" class="form-label">account rol</label>
                         <select class="form-select" id="accountRole" name="accountRole" required>
                             <option value="admin" <?php echo isset($formData['accountRole']) && $formData['accountRole'] === 'admin' ? 'selected' : ''; ?>>admin</option>
-                            <option value="monteur" <?php echo isset($formData['accountRole']) && $formData['accountRole'] === 'monteur' ? 'selected' : ''; ?>>monteur</option>
-                            <option value="verkoopmedewerker" <?php echo isset($formData['accountRole']) && $formData['accountRole'] === 'verkoopmedewerker' ? 'selected' : ''; ?>>verkoopmedewerker</option>
+                            <option value="visitor" <?php echo isset($formData['accountRole']) && $formData['accountRole'] === 'visitor' ? 'selected' : ''; ?>>visitor</option>
                         </select>
                     </div>
                     <div class="mb-3">

@@ -76,6 +76,7 @@ class AccountController
     {
         $id = $_POST['id'] ?? '';
         $this->accountModel->deleteAccount($id);
+        //after delete reload page
         header("Location: accounts.php");
     }
 
