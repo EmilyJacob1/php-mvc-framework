@@ -47,7 +47,7 @@ class LoginController
             //if there is an account with this email and the passwords match
             if ($account && password_verify($password, $account['accountPassword'])) {
                 // login successful
-                $_SESSION['accountid'] = $account['accountid'];
+                $_SESSION['accountId'] = $account['accountId'];
                 $_SESSION['accountRole'] = $account['accountRole'];
                 $_SESSION['username'] = $account['username'];
                 //send to home page

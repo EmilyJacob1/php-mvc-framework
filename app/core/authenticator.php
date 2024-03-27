@@ -10,7 +10,7 @@ class Authenticator
             session_start();
         }
         // if any user is not logged in else redirect to login page
-        if (!isset($_SESSION['accountid'])) {
+        if (!isset($_SESSION['accountId'])) {
             header("Location: index.php");
             exit();
         }
@@ -23,7 +23,7 @@ class Authenticator
             session_start();
         }
         // if admin is not logged in, redirect to login page
-        if (!isset($_SESSION['accountid']) || $_SESSION['accountrole'] !== 'admin') {
+        if (!isset($_SESSION['accountId']) || $_SESSION['accountRole'] !== 'admin') {
             header("Location: index.php");
             exit();
         }
@@ -37,7 +37,7 @@ class Authenticator
         }
 
         // if klant is not logged in, redirect to login page
-        if (!isset($_SESSION['accountid']) || $_SESSION['accountrole'] !== 'visitor') {
+        if (!isset($_SESSION['accountId']) || $_SESSION['accountRole'] !== 'visitor') {
             header("Location: index.php");
             exit();
         }
@@ -51,7 +51,7 @@ class Authenticator
         }
 
         // if klant is not logged in, redirect to login page
-        if (!isset($_SESSION['accountid']) || ($_SESSION['accountrole'] !== 'monteur' && $_SESSION['accountrole'] !== 'admin')) {
+        if (!isset($_SESSION['accountId']) || ($_SESSION['accountRole'] !== 'monteur' && $_SESSION['accountRole'] !== 'admin')) {
             header("Location: index.php");
             exit();
         }

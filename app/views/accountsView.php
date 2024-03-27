@@ -36,18 +36,18 @@ require '../public/components/head.php';
                             <?php foreach ($accounts as $account) : ?>
                                 <tr>
                                     <td><?php echo $account['username']; ?></td>
-                                    <td><?php echo $account['accountemail']; ?></td>
-                                    <td><?php echo $account['accountrole']; ?></td>
+                                    <td><?php echo $account['accountEmail']; ?></td>
+                                    <td><?php echo $account['accountRole']; ?></td>
                                     <td>
                                         <div class="flex-evenly">
                                             <!-- edit button and delete button -->
-                                            <a href="editAccount.php?id=<?php echo $account['accountid']; ?>" class="btn btn-primary">
+                                            <a href="editAccount.php?id=<?php echo $account['accountId']; ?>" class="btn btn-primary">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
 
                                             <form method="post" id="deleteAccountForm">
                                                 <input type="hidden" name="action" value="deleteaccount">
-                                                <input type="hidden" name="id" value="<?php echo $account['accountid']; ?>">
+                                                <input type="hidden" name="id" value="<?php echo $account['accountId']; ?>">
                                                 <a href="" onclick="return confirm('Wil je de gebruiker: <?php echo $account['username']?> echt verwijderen? Deze actie kan niet ongedaan worden.')">
                                                     <button type="submit" class="btn btn-alert"><i class="bi bi-trash"></i></button>
                                                 </a>

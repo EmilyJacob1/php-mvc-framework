@@ -26,7 +26,7 @@ class AccountModel
 
     public function getAccountByEmail($email)
     {
-        $query = "SELECT * FROM accounts WHERE accountemail = ? AND archived = 0";
+        $query = "SELECT * FROM accounts WHERE accountEmail = ? AND archived = 0";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -39,7 +39,7 @@ class AccountModel
 
     public function getAccountById($id)
     {
-        $query = "SELECT * FROM accounts WHERE accountid = ?";
+        $query = "SELECT * FROM accounts WHERE accountId = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -50,11 +50,11 @@ class AccountModel
         return $account;
     }
 
-    public function deleteAccount($accountid)
+    public function deleteAccount($accountId)
     {
-        $query = "UPDATE accounts SET archived = 1 WHERE accountid = ?";
+        $query = "UPDATE accounts SET archived = 1 WHERE accountId = ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("i", $accountid);
+        $stmt->bind_param("i", $accountId);
         $success = $stmt->execute();
     
         return $success;
