@@ -16,14 +16,15 @@ if (session_status() == PHP_SESSION_NONE) {
 
                 <?php if (isset($_SESSION['accountid'])) : ?>
                     <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
-                    <?php switch ($_SESSION['role']):
-                        case 'customer': ?>
+                    <?php switch ($_SESSION['accountrole']):
+                        case 'visitor': ?>
                             <li class="nav-item"><a class="nav-link" href="reviews.php">reviews</a></li>
+                            <li class="nav-item"><a class="nav-link" href="account.php">account</a></li>
                             <?php break; ?>
                         <?php
                         case 'admin': ?>
+                            <li class="nav-item"><a class="nav-link" href="reviews.php">reviews</a></li>
                             <li class="nav-item"><a class="nav-link" href="accounts.php">accounts</a></li>
-                            <li class="nav-item"><a class="nav-link" href="customers.php">Klanten</a></li>
                             <li class="nav-item"><a class="nav-link" href="movies.php">movies</a></li>
                             <?php break; ?>
                     <?php endswitch; ?>

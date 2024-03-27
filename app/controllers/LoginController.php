@@ -48,7 +48,7 @@ class LoginController
             if ($account && password_verify($password, $account['accountpassword'])) {
                 // login successful
                 $_SESSION['accountid'] = $account['accountid'];
-                $_SESSION['role'] = $account['role'];
+                $_SESSION['accountrole'] = $account['accountrole'];
                 $_SESSION['username'] = $account['username'];
                 //send to home page
                 header("Location: home.php"); 

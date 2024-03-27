@@ -23,13 +23,13 @@ class Authenticator
             session_start();
         }
         // if admin is not logged in, redirect to login page
-        if (!isset($_SESSION['accountid']) || $_SESSION['role'] !== 'admin') {
+        if (!isset($_SESSION['accountid']) || $_SESSION['accountrole'] !== 'admin') {
             header("Location: index.php");
             exit();
         }
     }
 
-    public static function checkAuthenticationCustomer()
+    public static function checkAuthenticationVisitor()
     {
         // start session if not already started
         if (session_status() == PHP_SESSION_NONE) {
@@ -37,7 +37,7 @@ class Authenticator
         }
 
         // if klant is not logged in, redirect to login page
-        if (!isset($_SESSION['accountid']) || $_SESSION['role'] !== 'klant') {
+        if (!isset($_SESSION['accountid']) || $_SESSION['accountrole'] !== 'visitor') {
             header("Location: index.php");
             exit();
         }
@@ -51,21 +51,7 @@ class Authenticator
         }
 
         // if klant is not logged in, redirect to login page
-        if (!isset($_SESSION['accountid']) || ($_SESSION['role'] !== 'monteur' && $_SESSION['role'] !== 'admin')) {
-            header("Location: index.php");
-            exit();
-        }
-    }
-
-    public static function checkAuthenticationSalesEmployee()
-    {
-        // start session if not already started
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-
-        // if klant is not logged in, redirect to login page
-        if (!isset($_SESSION['accountid']) || $_SESSION['role'] !== 'verkoopmedewerker') {
+        if (!isset($_SESSION['accountid']) || ($_SESSION['accountrole'] !== 'monteur' && $_SESSION['accountrole'] !== 'admin')) {
             header("Location: index.php");
             exit();
         }

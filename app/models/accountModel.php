@@ -50,11 +50,11 @@ class AccountModel
         return $account;
     }
 
-    public function deleteAccount($accountId)
+    public function deleteAccount($accountid)
     {
-        $query = "UPDATE accounts SET archived = 1 WHERE accountId = ?";
+        $query = "UPDATE accounts SET archived = 1 WHERE accountid = ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("i", $accountId);
+        $stmt->bind_param("i", $accountid);
         $success = $stmt->execute();
     
         return $success;
@@ -62,7 +62,7 @@ class AccountModel
 
     public function addAccount($accountRole, $username, $accountEmail, $hashedPassword)
     {
-        $query = "INSERT INTO accounts (accountRole, username, accountEmail, accountPassword) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO accounts (accountrole, username, accountemail, accountpassword) VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("ssss", $accountRole, $username, $accountEmail, $hashedPassword);
         $success = $stmt->execute();
@@ -72,7 +72,7 @@ class AccountModel
     
     public function editAccount($id, $accountRole, $username, $accountEmail, $hashedPassword)
     {
-        $query = "UPDATE accounts SET accountRole = ?, username = ?, accountEmail = ?, accountPassword = ? WHERE accountId = ?";
+        $query = "UPDATE accounts SET accountrole = ?, username = ?, accountEmail = ?, accountPassword = ? WHERE accountid = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("ssssi", $accountRole, $username, $accountEmail, $hashedPassword, $id);
         $success = $stmt->execute();
