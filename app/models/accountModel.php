@@ -26,7 +26,7 @@ class AccountModel
 
     public function getAccountByEmail($email)
     {
-        $query = "SELECT * FROM accounts WHERE accountEmail = ? AND archived = 0";
+        $query = "SELECT * FROM accounts WHERE accountemail = ? AND archived = 0";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -39,7 +39,7 @@ class AccountModel
 
     public function getAccountById($id)
     {
-        $query = "SELECT * FROM accounts WHERE accountId = ?";
+        $query = "SELECT * FROM accounts WHERE accountid = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $id);
         $stmt->execute();

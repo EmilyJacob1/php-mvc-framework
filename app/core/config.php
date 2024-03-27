@@ -1,7 +1,7 @@
 <?php
 class Database {
     private $host = 'localhost';
-    private $dbname = 'firearcade';
+    private $dbname = 'cinema';
     private $username = 'root';
     private $password = '';
     private $conn;

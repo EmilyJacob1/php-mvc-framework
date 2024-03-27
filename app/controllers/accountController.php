@@ -9,7 +9,7 @@ class AccountController
 
     public function __construct()
     {
-        //check if admin is logged in
+        //check if admin is logged in first
         Authenticator::checkAuthenticationAdmin();
         $this->accountModel = new AccountModel();
     }

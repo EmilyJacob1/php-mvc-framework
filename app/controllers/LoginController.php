@@ -45,10 +45,10 @@ class LoginController
             $account = $this->accountModel->getAccountByEmail($email);
     
             //if there is an account with this email and the passwords match
-            if ($account && password_verify($password, $account['accountPassword'])) {
+            if ($account && password_verify($password, $account['accountpassword'])) {
                 // login successful
-                $_SESSION['userId'] = $account['accountId'];
-                $_SESSION['role'] = $account['accountRole'];
+                $_SESSION['accountid'] = $account['accountid'];
+                $_SESSION['role'] = $account['role'];
                 $_SESSION['username'] = $account['username'];
                 //send to home page
                 header("Location: home.php"); 
@@ -69,7 +69,7 @@ class LoginController
 
         // check if email or password is empty
         if (empty($email) || empty($password)) {
-            $errors['emptyEmail'] = "Please provide both email and password.";
+            $errors['emptyEmail'] = "Email adres en wachtwoord moeten ingevuld zijn.";
         }
 
         return $errors;

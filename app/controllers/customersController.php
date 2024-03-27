@@ -7,7 +7,7 @@ class CustomerController
     public function __construct()
     {
         //first check if a mechanic is logged in
-        Authenticator::checkAuthenticationSalesEmployee();
+        Authenticator::checkAuthenticationAdmin();
     }
 
     public function renderCustommer()
