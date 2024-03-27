@@ -31,9 +31,9 @@ require '../public/components/head.php';
                         <label for="accountRole" class="form-label">account rol</label>
                         <select class="form-select" id="accountRole" name="accountRole" required>
                             <?php
-                            $roles = ['admin', 'verkoopmedewerker', 'monteur', 'klant'];
+                            $roles = ['admin', 'visitor'];
                             foreach ($roles as $role) {
-                                $selected = isset($formData['accountRole']) && $formData['accountRole'] === $role ? 'selected' : ($account['accountRole'] === $accountRole ? 'selected' : '');
+                                $selected = isset($formData['accountRole']) && $formData['accountRole'] === $role ? 'selected' : ($account['accountRole'] === $role ? 'selected' : '');
                                 echo "<option value=\"$role\" $selected>$role</option>";
                             }
                             ?>
