@@ -37,6 +37,18 @@ class AccountModel
         return $account;
     }
 
+    public function isEmailAvailable($accountEmail)
+    {
+        $query = "SELECT COUNT(*) as count FROM accounts WHERE accountEmail = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("s", $accountEmail);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $count = $result->fetch_assoc()['count'];
+        
+        return $count == 0; // If count is 0, email is available
+    }
+
     public function getAccountById($id)
     {
         $query = "SELECT * FROM accounts WHERE accountId = ?";

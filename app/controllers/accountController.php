@@ -17,7 +17,7 @@ class AccountController
     public function renderAccounts()
     {
         $accounts = $this->accountModel->getAllAccounts();
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'deleteaccount') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->deleteAccount();
         } else {
             require '../app/views/accountsView.php';
@@ -26,7 +26,7 @@ class AccountController
 
     public function renderAddAccount()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'add') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->addAccount();
         } else {
             require '../app/views/addAccountView.php';
@@ -38,7 +38,7 @@ class AccountController
         $id = $_GET['id'] ?? null;
         $account = $this->accountModel->getAccountById($id);
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'edit') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->editAccount();
         } else {
             require '../app/views/editAccountView.php';
@@ -82,12 +82,13 @@ class AccountController
 
     private function editAccount()
     {
+        //get all the data
         $id = $_POST['id'] ?? '';
         $accountRole = $_POST['accountRole'] ?? '';
         $username = $_POST['username'] ?? '';
         $accountEmail = $_POST['accountEmail'] ?? '';
         $accountPassword = $_POST['accountPassword'] ?? '';
-
+        //validate and check for errors
         $errors = $this->validateAccountData($accountRole, $username, $accountEmail, $accountPassword);
 
         if (!empty($errors)) {
@@ -106,7 +107,7 @@ class AccountController
             $existingAccount = $this->accountModel->getAccountById($id);
             $existingHashedPassword = $existingAccount['accountPassword'];
 
-            // check if the entered password matches the existing hashed password
+            // check if the entered password matches the current password
             if ($accountPassword === $existingHashedPassword) {
                 // keep the existing hashed password
                 $hashedPassword = $existingHashedPassword;
@@ -138,7 +139,10 @@ class AccountController
             $errors['accountEmail'] = 'Email adres is verplicht in te voeren.';
         }
 
-        //also check if email is allready taken or not here
+        //check if email is available and not allready taken
+        if (!$this->accountModel->isEmailAvailable($accountEmail)) {
+            $errors['emailTaken'] = 'Dit e-mailadres is al in gebruik';
+        }
 
         if (empty($accountPassword) || strlen($accountPassword) < 15) {
             $errors['releaseYear'] = 'Wachtwoord is verplicht en moet minimaal 15 karakters bevatten.';

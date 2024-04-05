@@ -33,9 +33,9 @@ class LoginController
 
     public function login($email, $password)
     {
-        //first handle validation
+        //first check for empty inputs
         $errors = $this->validateLoginData($email, $password);
-    
+        
         if (!empty($errors)) {
             $errors;
             require '../app/views/loginView.php';
