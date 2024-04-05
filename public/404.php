@@ -5,12 +5,11 @@ require 'components/head.php';
 <body class="d-flex justify-content-center align-items-center">
     <div class="col-md-12 text-center">
         <h1>404</h1>
-        <h2>Page Not Found</h2>
+        <h2>Pagina niet gevonden</h2>
         <p>
-            Sorry, the page you are looking
-            for does not exist.
+            De pagina waar je naar zocht is niet gevonden.
         </p>
-        <a class="btn btn-primary" href="index.php">back to home</a>
+        <a class="btn btn-primary" href="index.php">Terug naar home</a>
     </div>
 </body>
 

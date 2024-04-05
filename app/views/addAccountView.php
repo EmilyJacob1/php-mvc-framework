@@ -9,7 +9,7 @@ require '../public/components/head.php';
 
     <section class="add-user">
 
-        <div class="container col-12 col-sm-8 col-md-6 col-lg-4 mx-auto" data-bs-theme="dark">
+        <div class="container col-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
             <div class="text-end mb-3">
                 <a class="return-link" href="accounts.php">
                     <i class="bi bi-arrow-left"></i> terug naar het overzicht
@@ -30,7 +30,8 @@ require '../public/components/head.php';
                         <label for="accountRole" class="form-label">account rol</label>
                         <select class="form-select" id="accountRole" name="accountRole" required>
                             <option value="admin" <?php echo isset($formData['accountRole']) && $formData['accountRole'] === 'admin' ? 'selected' : ''; ?>>admin</option>
-                            <option value="visitor" <?php echo isset($formData['accountRole']) && $formData['accountRole'] === 'visitor' ? 'selected' : ''; ?>>visitor</option>
+                            <option value="leerling" <?php echo isset($formData['accountRole']) && $formData['accountRole'] === 'leerling' ? 'selected' : ''; ?>>leerling</option>
+                            <option value="instructeur" <?php echo isset($formData['accountRole']) && $formData['accountRole'] === 'instructeur' ? 'selected' : ''; ?>>instructeur</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -53,7 +54,7 @@ require '../public/components/head.php';
                     <?php endif; ?>
 
                     <div class="mt-5">
-                        <button type="submit" class="btn btn-primary">Opslaan</button>
+                        <button type="submit" class="btn btn-tertiary">Opslaan</button>
                     </div>
                 </form>
             </div>

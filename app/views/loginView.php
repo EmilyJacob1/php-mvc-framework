@@ -8,20 +8,20 @@ require '../public/components/head.php';
     require '../public/components/nav.php';
     ?>
 
-    <section class=" container text-center">
+    <section class="container text-center">
 
-        <form method="post" class="card col-12 col-sm-8 col-md-6 col-lg-4 mx-auto" data-bs-theme="dark">
-            <h1 class="login-icon mb-3"><i class="bi bi-person-fill"></i></h1>
+        <form method="post" class="card col-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
+            <h1 class="login-icon"><i class="bi bi-person"></i></h1>
             <h5 class="mb-4">Login to your account</h5>
 
             <div class="form-floating mb-4">
-                <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
+                <input type="email" name="email" class="form-control" id="floatingInput" placeholder="email adres">
+                <label for="floatingInput">email adres</label>
             </div>
 
             <div class="form-floating mb-4">
-                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
+                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="wachtwoord">
+                <label for="floatingPassword">wachtwoord</label>
             </div>
 
             <button class="btn btn-primary w-100 py-2 mb-5" type="submit">Sign in</button>

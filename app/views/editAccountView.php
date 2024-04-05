@@ -9,7 +9,7 @@ require '../public/components/head.php';
 
     <section class="edit-movie">
 
-        <div class="container col-12 col-sm-8 col-md-6 col-lg-4 mx-auto" data-bs-theme="dark">
+        <div class="container col-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
             <div class="text-end mb-3">
                 <a class="return-link" href="accounts.php">
                     <i class="bi bi-arrow-left"></i> terug naar het overzicht
@@ -31,7 +31,7 @@ require '../public/components/head.php';
                         <label for="accountRole" class="form-label">account rol</label>
                         <select class="form-select" id="accountRole" name="accountRole" required>
                             <?php
-                            $roles = ['admin', 'visitor'];
+                            $roles = ['admin', 'leerling', 'instructeur'];
                             foreach ($roles as $role) {
                                 $selected = isset($formData['accountRole']) && $formData['accountRole'] === $role ? 'selected' : ($account['accountRole'] === $role ? 'selected' : '');
                                 echo "<option value=\"$role\" $selected>$role</option>";
@@ -59,7 +59,7 @@ require '../public/components/head.php';
                     <?php endif; ?>
 
                     <div class="mt-5">
-                        <button type="submit" class="btn btn-primary">Opslaan</button>
+                        <button type="submit" class="btn btn-tertiary">Opslaan</button>
                     </div>
                 </form>
             </div>

@@ -19,7 +19,6 @@ require '../public/components/head.php';
                     <a href="addAccount.php" class="col-md-2 btn btn-primary mb-3 ms-2 me-2">
                         voeg gebruiker toe
                     </a>
-                    <input class="col-lg-3 col-md-6 col-sm-12 ms-2 me-2" type="text" id="searchInput" onkeyup="accountSearch()" placeholder="zoek een gebruiker">
                 </div>
 
                 <div class="scroll-table">
@@ -49,7 +48,7 @@ require '../public/components/head.php';
                                                 <input type="hidden" name="action" value="deleteaccount">
                                                 <input type="hidden" name="id" value="<?php echo $account['accountId']; ?>">
                                                 <a href="" onclick="return confirm('Wil je de gebruiker: <?php echo $account['username']?> echt verwijderen? Deze actie kan niet ongedaan worden.')">
-                                                    <button type="submit" class="btn btn-alert"><i class="bi bi-trash"></i></button>
+                                                    <button type="submit" class="btn btn-secondary"><i class="bi bi-trash"></i></button>
                                                 </a>
                                             </form>
                                         </div>
