@@ -9,8 +9,13 @@ class AccountController
 
     public function __construct()
     {
+        // start session if not already started
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         //check if admin is logged in first
         Authenticator::checkAuthenticationAdmin();
+        //create new accountmodel instance
         $this->accountModel = new AccountModel();
     }
 
@@ -125,8 +130,9 @@ class AccountController
 
     private function validateAccountData($accountRole, $username, $accountEmail, $accountPassword)
     {
+        //store the errors in an array
         $errors = [];
-
+        //check for empty fields etcetera.
         if (empty($username) || strlen($username) > 55) {
             $errors['username'] = 'Gebruikersnaam is verplicht en mag max. 55 karakters bevatten.';
         }
@@ -139,15 +145,14 @@ class AccountController
             $errors['accountEmail'] = 'Email adres is verplicht in te voeren.';
         }
 
-        //check if email is available and not allready taken
-        if (!$this->accountModel->isEmailAvailable($accountEmail)) {
-            $errors['emailTaken'] = 'Dit e-mailadres is al in gebruik';
-        }
-
         if (empty($accountPassword) || strlen($accountPassword) < 15) {
             $errors['releaseYear'] = 'Wachtwoord is verplicht en moet minimaal 15 karakters bevatten.';
         }
 
+        //check if email is available and not allready taken
+        if (!$this->accountModel->isEmailAvailable($accountEmail)) {
+            $errors['emailTaken'] = 'Dit e-mailadres is al in gebruik';
+        }
 
         return $errors;
     }

@@ -6,7 +6,11 @@ class HomeController
 {
     public function __construct()
     {
-        //first check if any user is logged in
+        // start session if not already started
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        //check if any user is logged in
         Authenticator::checkIsLoggedin();
     }
 

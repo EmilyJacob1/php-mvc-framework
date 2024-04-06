@@ -7,6 +7,7 @@ class AccountModel
 
     public function __construct()
     {
+        //create new datanbase instance and connect.
         $database = new Database();
         $this->conn = $database->getConnection();
     }

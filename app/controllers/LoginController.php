@@ -8,12 +8,12 @@ class LoginController
 
     public function __construct()
     {
-        $this->accountModel = new AccountModel();
-
         // start session if not already started
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+        //create new instance of accountmodel
+        $this->accountModel = new AccountModel();
     }
 
     public function renderLogin()
@@ -35,7 +35,7 @@ class LoginController
     {
         //first check for empty inputs
         $errors = $this->validateLoginData($email, $password);
-        
+
         if (!empty($errors)) {
             $errors;
             require '../app/views/loginView.php';
@@ -43,7 +43,7 @@ class LoginController
         } else {
             // attempt to get user by email
             $account = $this->accountModel->getAccountByEmail($email);
-    
+
             //if there is an account with this email and the passwords match
             if ($account && password_verify($password, $account['accountPassword'])) {
                 // login successful
@@ -51,7 +51,7 @@ class LoginController
                 $_SESSION['accountRole'] = $account['accountRole'];
                 $_SESSION['username'] = $account['username'];
                 //send to home page
-                header("Location: home.php"); 
+                header("Location: home.php");
                 exit();
             } else {
                 // invalid email or password
@@ -75,11 +75,12 @@ class LoginController
         return $errors;
     }
 
+    //logout the user by destroying the session
     public function logout()
     {
         session_destroy();
-        //redirect to the login page
-        header("Location: index.php"); 
+        //redirect back to the login page
+        header("Location: index.php");
         exit();
     }
 }
