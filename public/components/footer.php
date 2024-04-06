@@ -2,5 +2,5 @@
     &copy; 
     <script>
         document.write(new Date().getFullYear())
-    </script> | Fire Arcade
+    </script> | DriveSmart
 </footer>
