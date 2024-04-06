@@ -1,31 +1,14 @@
-/*scrollbar*/
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #333;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: #222;
-}
-
-
 /*base*/
 body {
   font-family: Arial !important;
   line-height: 1.6;
   margin: 0;
-  /* background-image: url('https://t4.ftcdn.net/jpg/03/87/92/05/360_F_387920502_YP9xXi5ronRnnfbQF0JTVewJxUIvNcFm.jpg'); */
-  /* background-size: cover;
-  background-repeat: no-repeat; */
+  background-image: url('https://img.freepik.com/free-vector/green-tones-gradient-background_23-2148376167.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
   position: relative;
   min-height: 100vh;
-  /* background-position: center; */
-  background-color: #9aaa8d !important;
-
+  background-position: center;
 }
 
 a,
@@ -34,30 +17,25 @@ a,
   color: #282d24 ;
 }
 
-.flex-evenly {
-  display: flex;
-  justify-content: space-evenly;
-}
-
 .text-alert {
   color: rgb(211, 9, 9);
 }
+.text-bold {
+  font-weight: bolder;
+}
 
+.navbar-brand, h2, h3, h5, .login-icon {
+  color: #2b8ff2 !important;
+}
+
+/*nav*/
 .nav-link {
   padding-left: 16px !important;
   padding-right: 16px !important;
 }
 
+
 /*buttons*/
-.btn-primary {
-  background-color: #097fcb !important;
-  color: #fff !important;
-}
-
-.btn-primary:hover {
-  background-color: #076bae !important;
-}
-
 .btn-secondary {
   background-color: #fee531 !important;
   color: #fff !important;
@@ -69,12 +47,12 @@ a,
 }
 
 .btn-tertiary {
-  background-color: #9aaa8d !important;
+  background-color: #91b66d !important;
   color: #fff !important;
 }
 
 .btn-tertiary:hover {
-  background-color: #819273 !important;
+  background-color: #759556 !important;
 }
 
 
@@ -85,7 +63,6 @@ a,
   padding: 2rem;
   margin: 1rem 0rem;
 }
-
 .card-title {
   margin-top: 0;
 }
@@ -94,6 +71,14 @@ section {
   padding-bottom: 6rem;
 }
 
+.flex-evenly {
+  display: flex;
+  justify-content: space-evenly;
+}  
+.flex-spacebetween {
+  display: flex;
+  justify-content: space-between;
+}
 
 /*tables*/
 table {
@@ -103,13 +88,6 @@ table {
   border-radius: 25px;
 }
 
-table th,
-table td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 2px solid #555;
-  border-right: 2px solid #555;
-}
 
 @media only screen and (max-width: 1000px) {
   .scroll-table {
@@ -126,10 +104,6 @@ input {
   padding: 5px;
 }
 
-#searchInput {
-  height: 2.5rem;
-}
-
 /*footer*/
 .footer {
   text-align: center;
@@ -139,8 +113,6 @@ input {
   width: 100%;
   box-sizing: border-box;
 }
-
-
 
 /*pages*/
 .error-page {

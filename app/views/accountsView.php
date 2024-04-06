@@ -10,25 +10,22 @@ require '../public/components/head.php';
     <section class="accounts">
 
         <div class="container">
-            <div class="row mt-3 mb-3">
-                <h2>Gebruikers</h2>
-            </div>
-
             <div class="col-12 card">
-                <div class="row mb-2">
-                    <a href="addAccount.php" class="col-md-2 btn btn-primary mb-3 ms-2 me-2">
+                <div class="flex-spacebetween mb-3">
+                    <h2>Gebruikers</h2>
+                    <a href="addAccount.php" class="col-md-2 btn btn-tertiary mt-2">
                         voeg gebruiker toe
                     </a>
                 </div>
 
                 <div class="scroll-table">
-                    <table id="accountsTable">
+                    <table id="accountsTable" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>gebruikersnaam</th>
                                 <th>email</th>
                                 <th>gebruikers rol</th>
-                                <th>Action</th>
+                                <th class="text-center">acties</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,8 +44,8 @@ require '../public/components/head.php';
                                             <form method="post" id="deleteAccountForm">
                                                 <input type="hidden" name="action" value="deleteaccount">
                                                 <input type="hidden" name="id" value="<?php echo $account['accountId']; ?>">
-                                                <a href="" onclick="return confirm('Wil je de gebruiker: <?php echo $account['username']?> echt verwijderen? Deze actie kan niet ongedaan worden.')">
-                                                    <button type="submit" class="btn btn-secondary"><i class="bi bi-trash"></i></button>
+                                                <a href="" onclick="return confirm('Wil je de gebruiker: <?php echo $account['username'] ?> echt verwijderen? Deze actie kan niet ongedaan worden.')">
+                                                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                                 </a>
                                             </form>
                                         </div>
