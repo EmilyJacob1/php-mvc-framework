@@ -11,7 +11,7 @@ require '../public/components/head.php';
 
         <div class="container">
             <div class="col-12 card">
-                <div class="flex-spacebetween mb-3">
+                <div class="flex-spacebetween mb-4">
                     <h2>Gebruikers</h2>
                     <a href="addAccount.php" class="col-md-2 btn btn-tertiary mt-2">
                         voeg gebruiker toe
