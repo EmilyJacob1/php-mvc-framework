@@ -58,6 +58,7 @@ class AccountController
         $accountPassword = $_POST['accountPassword'] ?? '';
 
         $errors = $this->validateAccountData($accountRole, $username, $accountEmail, $accountPassword);
+        $errors = $this->validateEmailAvailability($accountEmail);
 
         if (!empty($errors)) {
             $errors;
@@ -149,6 +150,13 @@ class AccountController
             $errors['releaseYear'] = 'Wachtwoord is verplicht en moet minimaal 15 karakters bevatten.';
         }
 
+        return $errors;
+    }
+
+    private function validateEmailAvailability($accountEmail)
+    {
+        //store the errors in an array
+        $errors = [];
         //check if email is available and not allready taken
         if (!$this->accountModel->isEmailAvailable($accountEmail)) {
             $errors['emailTaken'] = 'Dit e-mailadres is al in gebruik';
