@@ -94,7 +94,7 @@ class LessonController
 
         //check if instructeur is available
         if (!$this->lessonModel->isInstructeurAvailable($lessonDate, $startTime, $endTime, $instructeurId)) {
-            $errors['availability'] = 'deze les is niet beschikbaar';
+            $errors['availability'] = 'deze les is niet beschikbaar op dit tijdstip';
         }
 
         return $errors;
