@@ -57,8 +57,7 @@ class AccountController
         $accountEmail = $_POST['accountEmail'] ?? '';
         $accountPassword = $_POST['accountPassword'] ?? '';
 
-        $errors = $this->validateAccountData($accountRole, $username, $accountEmail, $accountPassword);
-        $errors = $this->validateEmailAvailability($accountEmail);
+        $errors = $this->validateAddData($accountRole, $username, $accountEmail, $accountPassword);
 
         if (!empty($errors)) {
             $errors;
@@ -129,12 +128,12 @@ class AccountController
         }
     }
 
-    private function validateAccountData($accountRole, $username, $accountEmail, $accountPassword)
+    private function validateAddData($accountRole, $username, $accountEmail, $accountPassword)
     {
         //store the errors in an array
         $errors = [];
         //check for empty fields etcetera.
-        if (empty($username) || strlen($username) > 55) {
+        if (empty($username) || strlen($username) > 15) {
             $errors['username'] = 'Gebruikersnaam is verplicht en mag max. 55 karakters bevatten.';
         }
 
@@ -145,6 +144,10 @@ class AccountController
         if (empty($accountEmail)) {
             $errors['accountEmail'] = 'Email adres is verplicht in te voeren.';
         }
+        //check if email is available and not allready taken
+        if (!$this->accountModel->isEmailAvailable($accountEmail)) {
+            $errors['emailTaken'] = 'Dit e-mailadres is al in gebruik';
+        }
 
         if (empty($accountPassword) || strlen($accountPassword) < 15) {
             $errors['releaseYear'] = 'Wachtwoord is verplicht en moet minimaal 15 karakters bevatten.';
@@ -153,13 +156,29 @@ class AccountController
         return $errors;
     }
 
-    private function validateEmailAvailability($accountEmail)
+    private function validateAccountData($accountRole, $username, $accountEmail, $accountPassword)
     {
         //store the errors in an array
         $errors = [];
+        //check for empty fields etcetera.
+        if (empty($username) || strlen($username) > 15) {
+            $errors['username'] = 'Gebruikersnaam is verplicht en mag max. 55 karakters bevatten.';
+        }
+
+        if (empty($accountRole)) {
+            $errors['accountRole'] = 'Er moet een account rol zijn geselecteerd';
+        }
+
+        if (empty($accountEmail)) {
+            $errors['accountEmail'] = 'Email adres is verplicht in te voeren.';
+        }
         //check if email is available and not allready taken
         if (!$this->accountModel->isEmailAvailable($accountEmail)) {
             $errors['emailTaken'] = 'Dit e-mailadres is al in gebruik';
+        }
+
+        if (empty($accountPassword) || strlen($accountPassword) < 15) {
+            $errors['releaseYear'] = 'Wachtwoord is verplicht en moet minimaal 15 karakters bevatten.';
         }
 
         return $errors;

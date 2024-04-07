@@ -30,7 +30,7 @@ class Authenticator
         }
     }
 
-    public static function checkAuthenticationStudent()
+    public static function checkForStudent()
     {
         // if a student is not logged in, redirect to login page
         // if (!isset($_SESSION['accountId']) || ($_SESSION['accountRole'] !== 'leerling' && $_SESSION['accountRole'] !== 'leerling')) {

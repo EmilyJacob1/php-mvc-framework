@@ -2,6 +2,6 @@
 require '../app/controllers/lessonController.php';
 
 $lessonController = new LessonController();
-$lessonController->renderLessons();
+$lessonController->renderAddLesson();
 
 
