@@ -67,6 +67,29 @@ class LessonModel
         return $success;
     }
     
+    public function isInstructeurAvailable($lessonDate, $startTime, $endTime, $instructeurId)
+    {
+        // Prepare SQL query to check for overlapping lessons
+        $query = "SELECT COUNT(*) AS numLessons
+                  FROM lessen
+                  WHERE instructeurId = ? 
+                  AND datum = ? 
+                  AND ((beginTijd < ? AND eindTijd > ?)
+                      OR (beginTijd < ? AND eindTijd > ?)
+                      OR (beginTijd >= ? AND eindTijd <= ?))";
+    
+        // Prepare and bind parameters to the query
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("isssssss", $instructeurId, $lessonDate, $endTime, $startTime, $endTime, $startTime, $startTime, $endTime);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        // Fetch the count of overlapping lessons
+        $count = $result->fetch_assoc()['numLessons'];
+        
+        // If count is 0, instructor is available
+        return $count == 0;
+    }
 
 
 }

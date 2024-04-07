@@ -23,7 +23,7 @@ class LessonController
     public function renderLessons()
     {
         $accountId = $_SESSION['accountId'];
-        $lessons= $this->lessonModel->getAllLessons($accountId);
+        $lessons = $this->lessonModel->getAllLessons($accountId);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // $this->deleteLesson();
         } else {
@@ -31,10 +31,10 @@ class LessonController
         }
     }
 
-    
+
     public function renderAddLesson()
     {
-        $instructeurs= $this->lessonModel->getInstructeurs();
+        $instructeurs = $this->lessonModel->getInstructeurs();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->addLesson();
         } else {
@@ -46,10 +46,12 @@ class LessonController
     {
         $lessonDate = $_POST['lessonDate'] ?? '';
         $startTime = $_POST['startTime'] ?? '';
+        //create the endtime
+        $endTime = date('H:i:s', strtotime($startTime . '+1 hour'));
         $instructeurId = $_POST['instructeurId'];
         $accountId = $_SESSION['accountId'];
 
-        $errors = $this->validateLesson($lessonDate, $startTime, $instructeurId);
+        $errors = $this->validateLesson($lessonDate, $startTime, $endTime, $instructeurId);
 
         if (!empty($errors)) {
             $errors;
@@ -61,23 +63,25 @@ class LessonController
             require '../app/views/addLessonView.php';
             exit;
         } else {
-            //create the endtime
-            $endTime = date('H:i:s', strtotime($startTime . '+1 hour'));
-            
             $this->lessonModel->addLesson($lessonDate, $startTime, $endTime, $instructeurId, $accountId);
             header("Location: lessons.php");
             exit;
         }
     }
 
-    
-    private function validateLesson($lessonDate, $startTime, $instructeurId)
+
+    private function validateLesson($lessonDate, $startTime, $endTime, $instructeurId)
     {
         //store the errors in an array
         $errors = [];
         //check for empty fields etcetera.
         if (empty($lessonDate)) {
             $errors['lessonDate'] = 'er moet een datum worden ingevoerd';
+        }
+
+        $today = date('Y-m-d');
+        if ($lessonDate < $today) {
+            $errors['lessonDate'] = 'De datum mag niet in het verleden liggen';
         }
 
         if (empty($startTime)) {
@@ -88,8 +92,11 @@ class LessonController
             $errors['instructeurId'] = 'Er moet een instructeur zijn geselecteerd';
         }
 
+        //check if instructeur is available
+        if (!$this->lessonModel->isInstructeurAvailable($lessonDate, $startTime, $endTime, $instructeurId)) {
+            $errors['availability'] = 'deze les is niet beschikbaar';
+        }
+
         return $errors;
     }
-
-
 }

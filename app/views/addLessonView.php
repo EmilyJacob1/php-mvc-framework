@@ -31,7 +31,7 @@ require '../public/components/head.php';
                     </div>
                     <div class="mb-3">
                         <label for="lessonDate" class="form-label">Datum</label>
-                        <input type="date" class="form-control" id="lessonDate" name="lessonDate" value="<?php echo isset($formData['lessonDate']) ? $formData['lessonDate'] : ''; ?>"  />
+                        <input type="date" class="form-control" id="lessonDate" name="lessonDate" value="<?php echo isset($formData['lessonDate']) ? $formData['lessonDate'] : ''; ?>" required />
                     </div>
                     <div class="mb-3">
                         <label for="startTime" class="form-label">Starttijd</label>
